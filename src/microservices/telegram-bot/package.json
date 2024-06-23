@@ -1,0 +1,11 @@
+{
+  "name": "telegram-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "build/index.js",
+  "author": "Fin",
+  "license": "ISC",
+  "dependencies": {
+    "telegraf": "^4.16.3"
+  }
+}

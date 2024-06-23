@@ -1,0 +1,8 @@
+{
+  "name": "migration",
+  "version": "1.0.0",
+  "main": "build/index.js",
+  "author": "Fin",
+  "license": "ISC",
+  "description": ""
+}

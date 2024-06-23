@@ -1,0 +1,59 @@
+{
+    "env": {
+        "node": true,
+        "commonjs": true
+    },
+    "extends": [
+        "prettier",
+        "airbnb-base",
+        "airbnb-typescript/base"
+    ],
+    "plugins": [
+        "prettier",
+        "@typescript-eslint",
+        "import"
+    ],
+    "parserOptions": {
+        "project": [
+            "./tsconfig.json"
+        ]
+    },
+    "parser": "@typescript-eslint/parser",
+    "ignorePatterns": [
+        "**/build/**/*"
+    ],
+    "rules": {
+        "prettier/prettier": [
+            "warn",
+            {
+                "singleQuote": true,
+                "trailingComma": "all",
+                "semi": true,
+                "tabWidth": 4,
+                "useTabs": false,
+                "endOfLine": "auto"
+            }
+        ],
+        "no-mixed-spaces-and-tabs": [
+            "error",
+            "smart-tabs"
+        ],
+        "nonblock-statement-body-position": "off",
+        "object-curly-newline": "off",
+        "function-paren-newline": "off",
+        "linebreak-style": "off",
+        "no-tabs": "off",
+        "implicit-arrow-linebreak": "off",
+        "operator-linebreak": "off",
+        "@typescript-eslint/no-namespace": "off",
+        "@typescript-eslint/no-redeclare": "off",
+        "@typescript-eslint/no-shadow": "off",
+        "@typescript-eslint/indent": "off",
+        "import/extensions": "off",
+        "import/no-unresolved": "warn",
+        "import/prefer-default-export": "warn",
+        "import/no-cycle": "off",
+        "import/no-relative-packages": "off",
+        "import/no-extraneous-dependencies": "off"
+    }
+}

@@ -220,7 +220,10 @@ documentUpdatingScene.on(['document', 'text'], async (context) => {
 
     await context.replyWithMarkdownV2(
         `Document to update:\nName: *${escape(editedDocument.name)}*\n${editedDocument.tags?.length ? `Tags: ${editedDocument.tags.map((tag: string) => `\\#${escape(tag)}`).join(' ')}\n` : ''}`,
-        Markup.inlineKeyboard([Markup.button.callback('Save', 'save')]),
+        Markup.inlineKeyboard([
+            Markup.button.callback('Cancel', 'cancel'),
+            Markup.button.callback('Save', 'save'),
+        ]),
     );
 });
 

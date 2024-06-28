@@ -5,6 +5,7 @@ import Order from '../types/Order';
 import FindResult from '../types/FindResult';
 import PermissionEntity from '../orm/entities/Permission';
 import TagDAO from './tag';
+import Tag from '../orm/entities/Tag';
 
 class Document {
     private entityManager: EntityManager;
@@ -113,9 +114,13 @@ class Document {
                     entityManager: manager,
                 });
 
-                const tags = await tagDAO.createManyIfNotExists(
+                await tagDAO.createManyIfNotExists(
                     options.tags.map((tag) => ({ name: tag })),
                 );
+
+                const tags = await tagDAO.find({
+                    names: options.tags,
+                });
 
                 const document = await documentRepository.save(
                     documentRepository.create({
@@ -123,7 +128,7 @@ class Document {
 
                         name: options.name,
 
-                        tags,
+                        tags: tags.items,
                     }),
                 );
 
@@ -165,11 +170,19 @@ class Document {
                     entityManager: manager,
                 });
 
-                const tags = options.tags
-                    ? await tagDAO.createManyIfNotExists(
-                          options.tags.map((tag) => ({ name: tag })),
-                      )
-                    : undefined;
+                let tags: Tag[] | undefined;
+
+                if (options.tags?.length) {
+                    await tagDAO.createManyIfNotExists(
+                        options.tags.map((tag) => ({ name: tag })),
+                    );
+
+                    tags = (
+                        await tagDAO.find({
+                            names: options.tags,
+                        })
+                    ).items;
+                }
 
                 const originalDocument = await documentRepository.findOne({
                     where: { id },
